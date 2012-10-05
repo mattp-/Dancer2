@@ -3,15 +3,15 @@ use strict;
 use warnings;
 
 BEGIN {
-    use Dancer::ModuleLoader;
+    use Module::Runtime qw/use_module/;
     plan skip_all => "Plack is needed to run this test"
-      unless Dancer::ModuleLoader->load('Plack::Request');
+      unless use_module('Plack::Request');
     use Dancer ':syntax';
 }
 
 plan tests => 7;
 
-Dancer::ModuleLoader->require('Dancer::Handler::PSGI');
+Module::Runtime qw/use_module/->require('Dancer::Handler::PSGI');
 
 my $handler = Dancer::Handler::PSGI->new();
 

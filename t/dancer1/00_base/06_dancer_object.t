@@ -3,10 +3,10 @@ use Test::More;
 use strict;
 use warnings;
 
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 
 plan skip_all => "the Clone module is needed for this test"
-    unless Dancer::ModuleLoader->load('Clone');
+    unless use_module('Clone');
 
 plan tests => 19;
 

@@ -3,16 +3,16 @@ use strict;
 use warnings;
 
 BEGIN {
-    use Dancer::ModuleLoader;
+    use Module::Runtime qw/use_module/;
 
     plan skip_all => "skip test with Test::TCP in win32" if $^O eq 'MSWin32';
 
     plan skip_all => 'Test::TCP is needed to run this test'
-        unless Dancer::ModuleLoader->load('Test::TCP' => "1.13");
+        unless use_module('Test::TCP' => "1.13");
     plan skip_all => 'YAML is needed to run this test'
-        unless Dancer::ModuleLoader->load('YAML');
+        unless use_module('YAML');
     plan skip_all => "File::Temp 0.22 required"
-        unless Dancer::ModuleLoader->load( 'File::Temp', '0.22' );
+        unless use_module( 'File::Temp', '0.22' );
 }
 
 use LWP::UserAgent;

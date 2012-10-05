@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 use Test::More import => ['!pass'];
+use Module::Runtime qw/use_module/;
 
 my @cases = (
     'A',
@@ -11,7 +12,7 @@ my @cases = (
 );
 
 plan skip_all => "File::Temp 0.22 required"
-    unless Dancer::ModuleLoader->load( 'File::Temp', '0.22' );
+    unless use_module( 'File::Temp', '0.22' );
 
 plan tests => 3 + @cases;
 

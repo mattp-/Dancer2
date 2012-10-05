@@ -1,4 +1,5 @@
 use Test::More import => ['!pass'];
+use Module::Runtime qw/use_module/;
 use strict;
 use warnings;
 use Dancer ':tests';
@@ -8,11 +9,11 @@ plan tests => 10;
 
 SKIP: {
     skip 'XML::Simple is needed to run this test', 10
-      unless Dancer::ModuleLoader->load('XML::Simple');
+      unless use_module('XML::Simple');
 
     skip 'XML::Parser or XML::SAX are needed to run this test', 10
-        unless Dancer::ModuleLoader->load('XML::Parser') or
-               Dancer::ModuleLoader->load('XML::SAX');
+        unless use_module('XML::Parser') or
+               use_module('XML::SAX');
 
     set serializer => 'XML', show_errors => 1;
 

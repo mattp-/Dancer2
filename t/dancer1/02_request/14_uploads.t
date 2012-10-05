@@ -6,9 +6,10 @@ use Dancer::Request;
 use Dancer::Test;
 use Dancer::FileUtils;
 use Test::More 'import' => ['!pass'];
+use Module::Runtime qw/use_module/;
 
 plan skip_all => "File::Temp 0.22 required"
-    unless Dancer::ModuleLoader->load( 'File::Temp', '0.22' );
+    unless use_module( 'File::Temp', '0.22' );
 
 sub test_path {
     my ($file, $dir) = @_;

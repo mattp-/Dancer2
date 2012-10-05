@@ -3,19 +3,19 @@
 use strict;
 use warnings;
 
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 use Test::More import => ['!pass'];
 
 plan skip_all => "Dancer::Session::Cookie 0.14 required"
-    unless Dancer::ModuleLoader->load( 'Dancer::Session::Cookie', '0.14' );
+    unless use_module( 'Dancer::Session::Cookie', '0.14' );
 
 plan skip_all => "skip test with Test::TCP in win32" if $^O eq 'MSWin32';
 plan skip_all => "Test::TCP required"
-    unless Dancer::ModuleLoader->load('Test::TCP' => "1.13");
+    unless use_module('Test::TCP' => "1.13");
 Test::TCP->import;
 
 plan skip_all => "HTTP::Cookies required"
-    unless Dancer::ModuleLoader->load('HTTP::Cookies');
+    unless use_module('HTTP::Cookies');
 HTTP::Cookies->import;
 
 plan tests=> 7;

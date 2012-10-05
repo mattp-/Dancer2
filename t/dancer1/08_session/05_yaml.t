@@ -3,7 +3,7 @@ use Test::More import => ['!pass'];
 use strict;
 use warnings;
 use Dancer ':syntax';
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 use Dancer::Logger;
 use File::Path qw(mkpath rmtree);
 
@@ -12,9 +12,9 @@ use File::Path qw(mkpath rmtree);
 
 BEGIN {
     plan skip_all => "need YAML"
-        unless Dancer::ModuleLoader->load('YAML');
+        unless use_module('YAML');
     plan skip_all => "File::Temp 0.22 required"
-        unless Dancer::ModuleLoader->load( 'File::Temp', '0.22' );
+        unless use_module( 'File::Temp', '0.22' );
     plan tests => 12;
     use_ok 'Dancer::Session::YAML'
 }

@@ -2,7 +2,7 @@ use Test::More;
 use Dancer ':syntax', ':tests';
 use Dancer::Test;
 use Dancer::Error;
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 
 plan tests => 12;
 
@@ -13,7 +13,7 @@ ok defined($error) => "error is defined";
 ok $error->title   => "title is set";
 
 SKIP: {
-    skip "JSON is required", 10 unless Dancer::ModuleLoader->load('JSON');
+    skip "JSON is required", 10 unless use_module('JSON');
     set 'serializer' => 'JSON';
     my $error = Dancer::Error->new( code => 400, message => { foo => 'bar' } );
     ok defined($error) => "error is defined";

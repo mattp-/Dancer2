@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 use Dancer::Config;
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 
 use File::Spec;
 use lib File::Spec->catdir( 't', 'lib' );
@@ -13,7 +13,7 @@ mock 'Dancer::Config'
     => method 'conffile'
     => should sub { __FILE__ };
 
-mock 'Dancer::ModuleLoader'
+mock 'Module::Runtime qw/use_module/'
     => method 'load'
     => should sub { 0, "Fish error. Goldfish in YAML." };
 

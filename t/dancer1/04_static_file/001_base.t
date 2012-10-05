@@ -7,19 +7,20 @@ BEGIN { $ENV{PERL_ONLY} = 1; }
 
 use Test::More import => ['!pass'];
 use Dancer::Test;
+use Module::Runtime qw/use_module/;
 
 
 plan skip_all => "Skip test with Test::TCP in win32"
   if $^O eq 'MSWin32';
     
 plan skip_all => "Test::TCP is required"
-  unless Dancer::ModuleLoader->load('Test::TCP' => "1.13");
+  unless use_module('Test::TCP' => "1.13");
 
 plan skip_all => "Plack is required"
-  unless Dancer::ModuleLoader->load('Plack::Loader');
+  unless use_module('Plack::Loader');
 
 plan skip_all => "HTTP::Parser::XS is required"
-  unless Dancer::ModuleLoader->load('HTTP::Parser::XS' => "0.10");
+  unless use_module('HTTP::Parser::XS' => "0.10");
 
 plan tests => 8;
 

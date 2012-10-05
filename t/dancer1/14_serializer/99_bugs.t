@@ -1,4 +1,5 @@
 use Test::More import => ['!pass'];
+use Module::Runtime qw/use_module/;
 use strict;
 use warnings;
 use Dancer ':tests';
@@ -10,7 +11,7 @@ plan tests => 13;
 # issue 57829
 SKIP: {
     skip 'JSON is needed to run this test', 2
-      unless Dancer::ModuleLoader->load('JSON');
+      unless use_module('JSON');
 
     setting( 'serializer' => 'JSON' );
     get '/' => sub { header 'X-Test' => 'ok'; { body => 'ok' } };
@@ -23,7 +24,7 @@ SKIP: {
 # issue gh-106
 SKIP: {
     skip 'JSON is needed to run this test', 1
-      unless Dancer::ModuleLoader->load('JSON');
+      unless use_module('JSON');
 
     setting( 'serializer' => 'JSON' );
     setting engines => { JSON => { allow_blessed => 1, convert_blessed => 1 } };
@@ -40,7 +41,7 @@ SKIP: {
 # issue gh-299
 SKIP: {
     skip 'JSON is needed to run this test', 5
-      unless Dancer::ModuleLoader->load('JSON');
+      unless use_module('JSON');
 
     get '/hash' => sub {{a => 1, b => 2, c => 3}};
 
@@ -61,7 +62,7 @@ SKIP: {
 # supported media type with additional parameters
 SKIP: {
     skip 'JSON is needed to run this test', 3
-      unless Dancer::ModuleLoader->load('JSON');
+      unless use_module('JSON');
 
     post '/test' => sub {
         return { test_value => params->{test_value} };
@@ -90,7 +91,7 @@ SKIP: {
 # show errors
 SKIP: {
     skip 'JSON is needed to run this test', 2
-        unless Dancer::ModuleLoader->load('JSON');
+        unless use_module('JSON');
 
     set environment => 'production';
 

@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 use Test::More import => ['!pass'];
+use Module::Runtime qw/use_module/;
 use Dancer ':syntax';
 
 plan tests => 1;
@@ -24,7 +25,7 @@ my @modules = qw(
 for my $module (@modules) {
     # Just in case this fails for any modules for any reason, catch errors:
     eval {
-        if (Dancer::ModuleLoader->load($module)) { 
+        if (use_module($module)) { 
             my $version = $module->VERSION;
             diag("$module $version loaded successfully");
         } else {

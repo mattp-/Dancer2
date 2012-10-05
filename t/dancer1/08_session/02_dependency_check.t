@@ -29,7 +29,7 @@ use EasyMocker;
 
 my $mock_loads = { };
 
-mock 'Dancer::ModuleLoader' 
+mock 'Module::Runtime qw/use_module/' 
     => method 'load' 
     => should sub { $mock_loads->{ $_[1] } };
 

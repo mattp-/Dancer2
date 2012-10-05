@@ -1,4 +1,5 @@
 use Test::More import => ['!pass'];
+use Module::Runtime qw/use_module/;
 use File::Spec;
 use lib File::Spec->catdir( 't', 'lib' );
 use TestUtils;
@@ -110,7 +111,7 @@ is_deeply( [split(/\n/, $content)], [1,2,3], 'send_file worked as expected');
 
 SKIP: {
     skip "Need IO::Scalar", 2
-        unless Dancer::ModuleLoader->load('IO::Scalar');
+        unless use_module('IO::Scalar');
 
     $resp = undef; # just to be sure
     $resp = dancer_response(GET => '/ioscalar');

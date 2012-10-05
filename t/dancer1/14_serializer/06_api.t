@@ -1,4 +1,5 @@
 use Test::More import => ['!pass'];
+use Module::Runtime qw/use_module/;
 use strict;
 use warnings;
 
@@ -11,7 +12,7 @@ plan tests => 16;
 
 SKIP: {
     skip 'JSON is needed to run this test', 3
-      unless Dancer::ModuleLoader->load('JSON');
+      unless use_module('JSON');
 
     ok my $s = Dancer::Serializer->init();
 
@@ -50,9 +51,9 @@ SKIP: {
 
 SKIP: {
     skip 'JSON is needed to run this test', 3
-      unless Dancer::ModuleLoader->load('JSON');
+      unless use_module('JSON');
     skip 'YAML is needed to run this test', 3
-      unless Dancer::ModuleLoader->load('YAML');
+      unless use_module('YAML');
 
     set serializer => 'Mutable';
     my $s = Dancer::Serializer->engine;
@@ -98,7 +99,7 @@ SKIP: {
 # handler helper
 SKIP: {
     skip 'JSON is needed to run this test', 3
-      unless Dancer::ModuleLoader->load('JSON');
+      unless use_module('JSON');
 
     my $body = '{"foo":42}';
     open my $in, '<', \$body;

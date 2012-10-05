@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 use Dancer;
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 
 use Encode;
 
@@ -51,7 +51,7 @@ is_deeply(Dancer::Handler->render_response(Dancer::Serializer->process_response(
 
 SKIP: {
     skip "JSON is needed for this test" , 3
-        unless Dancer::ModuleLoader->load('JSON');
+        unless use_module('JSON');
 
     setting serializer => 'JSON';
     ok $res->content_type('application/json');
@@ -68,11 +68,11 @@ SKIP: {
 
 SKIP: {
     skip "XML::Simple is needed for this test" , 3
-        unless Dancer::ModuleLoader->load('XML::Simple');
+        unless use_module('XML::Simple');
 
     skip "XML::Parser or XML::SAX are needed to run this test", 3
-        unless Dancer::ModuleLoader->load('XML::Parser') or
-               Dancer::ModuleLoader->load('XML::SAX');
+        unless use_module('XML::Parser') or
+               use_module('XML::SAX');
 
     setting serializer => 'XML';
     ok $res->content_type('text/xml');

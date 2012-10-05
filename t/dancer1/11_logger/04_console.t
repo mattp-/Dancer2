@@ -4,11 +4,11 @@ use strict;
 use warnings;
 use Test::More import => ['!pass'];
 
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 use Dancer;
 
 plan skip_all => "Test::Output is needed for this test"
-    unless Dancer::ModuleLoader->load('Test::Output');
+    unless use_module('Test::Output');
 
 plan tests => 8;
 

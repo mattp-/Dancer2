@@ -1,4 +1,5 @@
 use Test::More import => ['!pass'];
+use Module::Runtime qw/use_module/;
 
 use Dancer ':syntax';
 use Dancer::FileUtils;
@@ -6,7 +7,7 @@ use Dancer::FileUtils;
 use File::Spec qw/catfile/;
 
 plan skip_all => "File::Temp 0.22 required"
-    unless Dancer::ModuleLoader->load( 'File::Temp', '0.22' );
+    unless use_module( 'File::Temp', '0.22' );
 
 plan tests => 15;
 

@@ -3,7 +3,7 @@ use Test::More;
 
 use strict;
 use warnings;
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 use Dancer::FileUtils 'path';
 
 use File::Spec;
@@ -12,13 +12,13 @@ use EasyMocker;
 
 BEGIN {
     plan skip_all => "need Template to run this test" 
-        unless Dancer::ModuleLoader->load('Template');
+        unless use_module('Template');
     plan tests => 7;
     use_ok 'Dancer::Template::TemplateToolkit';
 };
 
 my $mock = { 'Template' => 0 };
-mock 'Dancer::ModuleLoader'
+mock 'Module::Runtime qw/use_module/'
     => method 'load'
     => should sub { $mock->{ $_[1] } };
 mock 'Template'

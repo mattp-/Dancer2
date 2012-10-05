@@ -1,13 +1,13 @@
 use Test::More import => ['!pass'];
 use strict;
 use warnings;
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 
 plan skip_all => "skip test with Test::TCP in win32" if $^O eq 'MSWin32';
 plan skip_all => "Test::TCP is needed for this test"
-    unless Dancer::ModuleLoader->load("Test::TCP" => "1.13");
+    unless use_module("Test::TCP" => "1.13");
 plan skip_all => "Test::TCP is needed for this test"
-    unless Dancer::ModuleLoader->load("Plack::Loader");
+    unless use_module("Plack::Loader");
 
 use LWP::UserAgent;
 

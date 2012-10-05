@@ -1,4 +1,5 @@
 use Test::More import => ['!pass'];
+use Module::Runtime qw/use_module/;
 use strict;
 use warnings;
 use Dancer ':tests';
@@ -8,7 +9,7 @@ plan tests => 10;
 
 SKIP: {
     skip 'YAML is needed to run this test', 10
-      unless Dancer::ModuleLoader->load('YAML');
+      unless use_module('YAML');
 
     set serializer => 'YAML', show_errors => 1;
 

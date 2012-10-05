@@ -1,4 +1,5 @@
 use Test::More import => ['!pass'];
+use Module::Runtime qw/use_module/;
 use strict;
 use warnings;
 use Dancer ':tests';
@@ -17,7 +18,7 @@ my $struct = {eris => 23};
 
 SKIP: {
     skip 'YAML is needed to run this test', 10
-      unless Dancer::ModuleLoader->load('YAML');
+      unless use_module('YAML');
 
     # helpers syntax
     ok my $test         = to_yaml($struct), 'to yaml';
@@ -44,7 +45,7 @@ SKIP: {
 
 SKIP: {
     skip 'JSON is needed to run this test', 13
-      unless Dancer::ModuleLoader->load('JSON');
+      unless use_module('JSON');
 
     # helpers syntax
     ok my $test         = to_json($struct), 'to json';
@@ -105,11 +106,11 @@ SKIP: {
 
 SKIP: {
     skip 'XML::Simple is needed to run this test', 13
-      unless Dancer::ModuleLoader->load('XML::Simple');
+      unless use_module('XML::Simple');
 
     skip 'XML::Parser or XML::SAX are needed to run this test', 13
-        unless Dancer::ModuleLoader->load('XML::Parser') or
-               Dancer::ModuleLoader->load('XML::SAX');
+        unless use_module('XML::Parser') or
+               use_module('XML::SAX');
 
     # helpers
     ok my $test         = to_xml($struct), 'to xml';
@@ -155,10 +156,10 @@ SKIP: {
 
 SKIP: {
     skip 'YAML is needed to run this test', 7
-      unless Dancer::ModuleLoader->load('YAML');
+      unless use_module('YAML');
 
     skip 'JSON is needed to run this test', 7
-      unless Dancer::ModuleLoader->load('JSON');
+      unless use_module('JSON');
 
     setting( 'serializer' => 'Mutable' );
     my $s = Dancer::Serializer->engine;

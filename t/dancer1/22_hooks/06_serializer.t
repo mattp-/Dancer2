@@ -2,13 +2,14 @@ use strict;
 use warnings;
 
 use Test::More import => ['!pass'];
+use Module::Runtime qw/use_module/;
 use Dancer ':syntax';
 use Dancer::Test;
 
 use Time::HiRes qw/gettimeofday/;
 
 plan skip_all => "JSON is needed to run this tests"
-    unless Dancer::ModuleLoader->load('JSON');
+    unless use_module('JSON');
 
 set serializer => 'JSON';
 

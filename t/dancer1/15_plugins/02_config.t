@@ -1,13 +1,13 @@
 use strict;
 use warnings;
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 use Test::More import => ['!pass'];
 
 plan skip_all => "YAML is needed for this test"
-    unless Dancer::ModuleLoader->load('YAML');
+    unless use_module('YAML');
 
 plan skip_all => "File::Temp 0.22 required"
-    unless Dancer::ModuleLoader->load( 'File::Temp', '0.22' );
+    unless use_module( 'File::Temp', '0.22' );
 
 plan tests => 9;
 

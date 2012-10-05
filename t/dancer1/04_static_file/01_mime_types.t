@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 use Dancer ':syntax';
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 
 use Dancer::Test;
 use Test::More import => ['!pass'];

@@ -3,13 +3,13 @@ use warnings;
 
 use Cwd;
 use Dancer::FileUtils;
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 
 use Test::More import => ['!pass'];
 use File::Spec;
 
 plan skip_all => "File::Temp 0.22 required"
-    unless Dancer::ModuleLoader->load( 'File::Temp', '0.22' );
+    unless use_module( 'File::Temp', '0.22' );
 
 plan tests => 6;
 

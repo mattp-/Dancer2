@@ -5,7 +5,7 @@ use IO::Handle;
 
 use Dancer::MIME;
 use Dancer ':syntax';
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 
 use Test::More import => ['!pass'];
 

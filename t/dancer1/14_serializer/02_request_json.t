@@ -1,4 +1,5 @@
 use Test::More import => ['!pass'];
+use Module::Runtime qw/use_module/;
 use strict;
 use warnings;
 use Dancer ':tests';
@@ -6,7 +7,7 @@ use Dancer::Test;
 
 BEGIN {
     plan skip_all => "need JSON"
-      unless Dancer::ModuleLoader->load('JSON');
+      unless use_module('JSON');
 
     plan tests => 11;
 }

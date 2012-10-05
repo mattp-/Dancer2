@@ -3,9 +3,10 @@ use strict;
 use warnings;
 
 use Test::More import => ['!pass'];
+use Module::Runtime qw/use_module/;
 
 plan skip_all => "Plack is needed for this test"
-    unless Dancer::ModuleLoader->load('Plack::Request');
+    unless use_module('Plack::Request');
 
 plan tests => 2;
 

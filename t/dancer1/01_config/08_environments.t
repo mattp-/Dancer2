@@ -1,9 +1,9 @@
 use strict;
 use warnings;
 use Test::More import => ['!pass'];
-use Dancer::ModuleLoader;
+use Module::Runtime qw/use_module/;
 
-Dancer::ModuleLoader->load('YAML')
+use_module('YAML')
     or plan skip_all => 'YAML is needed to run this test';
 
 plan tests => 5;

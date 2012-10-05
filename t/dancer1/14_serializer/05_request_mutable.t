@@ -1,4 +1,5 @@
 use Test::More import => ['!pass'];
+use Module::Runtime qw/use_module/;
 use strict;
 use warnings;
 use Dancer ':tests';
@@ -6,9 +7,9 @@ use Dancer::Test;
 
 BEGIN {
     plan skip_all => 'YAML is needed to run this test'
-      unless Dancer::ModuleLoader->load('YAML');
+      unless use_module('YAML');
     plan skip_all => 'JSON is needed to run this test'
-      unless Dancer::ModuleLoader->load('JSON');
+      unless use_module('JSON');
 }
 
 plan tests => 6;

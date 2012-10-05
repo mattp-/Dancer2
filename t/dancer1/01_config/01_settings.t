@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 use Test::More tests => 11, import => ['!pass'];
+use Module::Runtime qw/use_module/;
 
 use Dancer ':syntax';
 
@@ -24,8 +25,8 @@ is( Dancer::Config::_get_setting('bar'),
 
 SKIP: {
     skip "YAML and JSON are needed to run this test", 4
-      unless ( Dancer::ModuleLoader->load('YAML')
-        && Dancer::ModuleLoader->load('JSON') );
+      unless ( use_module('YAML')
+        && use_module('JSON') );
 
     ok my $serializer = Dancer::Config::_trigger_hooks( 'serializer', 'YAML' );
     isa_ok( $serializer, 'Dancer::Serializer::YAML' );
