@@ -11,7 +11,7 @@ plan tests => 16;
 
 set environment => 'production';
 
-my $res = Dancer::Response->new(headers => [ 'Content-Type' => 'text/html' ], content_type => 'text/html');
+my $res = Dancer::Core::Response->new(headers => [ 'Content-Type' => 'text/html' ], content_type => 'text/html');
 my $psgi_res = Dancer::Handler->render_response($res);
 is(@$psgi_res, 3);
 is($psgi_res->[0], 200, 'default status');

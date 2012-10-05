@@ -13,7 +13,7 @@ plan tests => 2;
 use Dancer::Handler::PSGI;
 
 use File::Spec;
-use Dancer::Request;
+use Dancer::Core::Request;
 
 my $request = {};
 my $env = {};
@@ -26,7 +26,7 @@ my $server_addr = '127.0.0.1';
 my $host_name = 'app.localdomain.com';
 
 # a / request
-$request->{'/'} = Dancer::Request->new_for_request(GET => '/');
+$request->{'/'} = Dancer::Core::Request->new_for_request(GET => '/');
 
 $env->{'/'}  = {
                  'psgi.multiprocess' => 1,

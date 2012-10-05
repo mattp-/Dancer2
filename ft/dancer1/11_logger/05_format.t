@@ -3,7 +3,7 @@ use warnings;
 use Test::More;
 use Dancer::Config qw/setting/;
 use Dancer::Logger::File;
-use Dancer::Request;
+use Dancer::Core::Request;
 
 plan tests => 9;
 
@@ -53,7 +53,7 @@ my $env = {
 my $headers = HTTP::Headers->new();
 $headers->header('Accept-Type' => 'text/html');
 
-my $request = Dancer::Request->new(env => $env);
+my $request = Dancer::Core::Request->new(env => $env);
 $request->{headers} = $headers;
 
 Dancer::SharedData->request($request);

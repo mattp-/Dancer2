@@ -2,11 +2,11 @@ use strict;
 use warnings;
 
 use Test::More;
-use Dancer::Response;
+use Dancer::Core::Response;
 
 plan tests => 10;
 
-ok my $response = Dancer::Response->new();
+ok my $response = Dancer::Core::Response->new();
 is $response->status, 200;
 
 isa_ok $response->{headers}, 'HTTP::Headers';

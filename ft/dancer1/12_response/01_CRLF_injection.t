@@ -3,11 +3,11 @@ use Test::More tests => 2;
 use strict;
 use warnings;
 
-use Dancer::Response;
+use Dancer::Core::Response;
 use Dancer::Handler::Standalone;
 
 my $r =
-  Dancer::Response->new(
+  Dancer::Core::Response->new(
     headers => [ 'Location' => "http://good.com\nLocation: http://evil.com" ],
   );
 
@@ -18,7 +18,7 @@ is_deeply(
 "CRLF injections are not allowed... a space is added to make the second line an RFC-compliant continuation line."
 );
 
-$r = Dancer::Response->new(
+$r = Dancer::Core::Response->new(
     headers => [
         'Content-Length' => 0,
         a                => "foo\nevil body",

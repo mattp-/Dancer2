@@ -17,7 +17,7 @@ isa_ok $r => 'Dancer::Route';
 is $r->method  => 'get',   "method is 'get'";
 is $r->pattern => '/:var', "pattern is '/:var'";
 
-my $req = Dancer::Request->new_for_request(GET => '/42');
+my $req = Dancer::Core::Request->new_for_request(GET => '/42');
 my $expected_match = { var => 42 };
 my $match = $r->match($req);
 is_deeply $match => $expected_match, "route matched GET /42";
@@ -45,7 +45,7 @@ my $r4 = Dancer::Route->new(method => 'get',
     code => sub { "this is r4" },
     prev => $r3);
 
-$req = Dancer::Request->new_for_request(GET => '/pass/42');
+$req = Dancer::Core::Request->new_for_request(GET => '/pass/42');
 $expected_match = { var => 42 };
 $match = $r2->match($req);
 is_deeply $match => $expected_match, "route matched GET /42";
@@ -65,7 +65,7 @@ my $r5 = Dancer::Route->new(
     pattern => '/error',
     code    => sub { send_error( "no", 404 ) }
 );
-$req = Dancer::Request->new_for_request( GET => '/error' );
+$req = Dancer::Core::Request->new_for_request( GET => '/error' );
 my $res = $r5->run($req);
 is( ( grep { /Content-Type/ } @{ $res->headers_to_array } ),
     1, 'only one content-type' );

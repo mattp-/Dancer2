@@ -26,7 +26,7 @@ $handler->init_request_headers( \%ENV );
 
 my $app = sub {
     my $env     = shift;
-    my $request = Dancer::Request->new( env => \%ENV );
+    my $request = Dancer::Core::Request->new( env => \%ENV );
     $handler->handle_request($request);
 };
 

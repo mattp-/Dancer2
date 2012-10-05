@@ -38,7 +38,7 @@ Test::TCP::test_tcp(
             my $env = shift;
             Dancer::App->set_running_app('APP1');
             get "/" => sub { return "Hello app1"; };
-            my $request = Dancer::Request->new(env => $env);
+            my $request = Dancer::Core::Request->new(env => $env);
             Dancer->dance($request);
         };
 
@@ -46,7 +46,7 @@ Test::TCP::test_tcp(
             my $env = shift;
             Dancer::App->set_running_app('APP2');
             get "/" => sub { return "Hello app2"; };
-            my $request = Dancer::Request->new(env => $env);
+            my $request = Dancer::Core::Request->new(env => $env);
             Dancer->dance($request);
         };
 

@@ -19,7 +19,7 @@ SKIP: {
     ok defined($error) => "error is defined";
 
     my $response = $error->render();
-    isa_ok $response => 'Dancer::Response';
+    isa_ok $response => 'Dancer::Core::Response';
 
     is     $response->{status}  => 400;
     like   $response->{content} => qr/foo/;

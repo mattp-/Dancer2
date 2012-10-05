@@ -78,8 +78,8 @@ response_headers_include
    Foo => 4,
   ], '... even if we pass a response object to response_headers_include()';
 
-# Dancer::Response header's API
-$res = Dancer::Response->new(
+# Dancer::Core::Response header's API
+$res = Dancer::Core::Response->new(
     status  => 200,
     headers => [ 'Content-type', 'application/json' ],
     content => "ok"

@@ -36,7 +36,7 @@ my $env = {
     SCRIPT_NAME => '/',
     COOKIE => 'complex=token&foo&token_secret&bar',
 };
-my $request = Dancer::Request->new(env => $env);
+my $request = Dancer::Core::Request->new(env => $env);
 Dancer::SharedData->request($request);
 ok(Dancer::Cookies->init, "Dancer::Cookies->init");
 
@@ -57,7 +57,7 @@ $env = {
     HTTP_COOKIE => 'dancer.session=1209039; fbs_102="access_token=xxxxxxxxxx%7Cffffff"',
 };
 
-$request = Dancer::Request->new(env => $env);
+$request = Dancer::Core::Request->new(env => $env);
 Dancer::SharedData->request($request);
 Dancer::Cookies->init;
 
@@ -74,7 +74,7 @@ eval {
         HTTP_COOKIE => 'invalid_cookie=1,2,3',
     };
 
-    $request = Dancer::Request->new(env => $env);
+    $request = Dancer::Core::Request->new(env => $env);
     Dancer::SharedData->request($request);
     Dancer::Cookies->init;
 };

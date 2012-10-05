@@ -3,9 +3,9 @@ use Test::More tests => 5;
 use strict;
 use warnings FATAL => 'all';
 
-use Dancer::Request;
+use Dancer::Core::Request;
 
-my $req = Dancer::Request->new_for_request(get => '/stuff');
+my $req = Dancer::Core::Request->new_for_request(get => '/stuff');
 is $req->path, '/stuff', "path is set";
 is $req->method, 'GET', "method is set";
 

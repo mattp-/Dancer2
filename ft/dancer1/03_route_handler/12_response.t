@@ -3,9 +3,9 @@ use Test::More tests => 23;
 use strict;
 use warnings;
 
-use Dancer::Response;
+use Dancer::Core::Response;
 
-my $r = Dancer::Response->new();
+my $r = Dancer::Core::Response->new();
 is $r->status => 200, "status looks good";
 isa_ok $r->{headers} => 'HTTP::Headers';
 
@@ -44,7 +44,7 @@ ok(Dancer::SharedData->response->exists);
 is(Dancer::SharedData->response->content => 'bar');
 
 # test for halt && halted
-Dancer::Response->new(content => 'this is ok');
+Dancer::Core::Response->new(content => 'this is ok');
 eval { Dancer::SharedData->response->halt('this is not ok'); };
 $r = Dancer::SharedData->response();
 
@@ -52,9 +52,9 @@ is $r->status  => 200;
 is $r->content => 'this is not ok';
 is $r->halted  => 1;
 
-Dancer::Response->new(content => 'this is ok');
+Dancer::Core::Response->new(content => 'this is ok');
 eval {
-    Dancer::SharedData->response->halt(Dancer::Response->new(status => 500,
+    Dancer::SharedData->response->halt(Dancer::Core::Response->new(status => 500,
                                                              content => 'this is not ok'));
 };
 $r = Dancer::SharedData->response();

@@ -2,7 +2,7 @@ use Test::More tests => 14;
 
 use strict;
 use warnings;
-use Dancer::Request;
+use Dancer::Core::Request;
 
 my $env = {
     'REQUEST_METHOD'  => 'GET',
@@ -17,7 +17,7 @@ my $env = {
     'REMOTE_USER'     => 'franck',
 };
 
-my $r = Dancer::Request->new(env => $env);
+my $r = Dancer::Core::Request->new(env => $env);
 is_deeply $r->env, $env, "environement looks good";
 
 is $r->path, $env->{PATH_INFO}, 'path looks good';

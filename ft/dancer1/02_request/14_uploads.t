@@ -2,7 +2,7 @@ use strict;
 use warnings;
     
 use Dancer ':syntax';
-use Dancer::Request;
+use Dancer::Core::Request;
 use Dancer::Test;
 use Dancer::FileUtils;
 use Test::More 'import' => ['!pass'];
@@ -57,7 +57,7 @@ plan tests => 21;
 
 do {
     open my $in, '<', \$content;
-    my $req = Dancer::Request->new(
+    my $req = Dancer::Core::Request->new(
        env => {
                'psgi.input'   => $in,
                CONTENT_LENGTH => length($content),
@@ -99,7 +99,7 @@ do {
       "content for upload #6 is good";
 
     my $upload = $req->upload('test_upload_file6');
-    isa_ok $upload, 'Dancer::Request::Upload';
+    isa_ok $upload, 'Dancer::Core::Request::Upload';
     is $upload->filename, 'yappo6.txt', 'filename is ok';
     ok $upload->file_handle, 'file handle is defined';
     is $req->params->{'test_upload_file6'}, 'yappo6.txt',

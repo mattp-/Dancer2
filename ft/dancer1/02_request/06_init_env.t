@@ -3,7 +3,7 @@ use Test::More;
 use strict;
 use warnings FATAL => 'all';
 
-use Dancer::Request;
+use Dancer::Core::Request;
 
 my $custom_env = {
     'SERVER_PORT'    => 3000,
@@ -24,7 +24,7 @@ my $custom_env = {
 my @http_env = grep /^HTTP_/, keys (%$custom_env);
 plan tests => 6 + (2 * scalar(@http_env));
 
-my $req = Dancer::Request->new(env => $custom_env);
+my $req = Dancer::Core::Request->new(env => $custom_env);
 is $req->path, '/stuff', 'path is set from custom env';
 is $req->method, 'GET', 'method is set from custom env';
 is_deeply scalar($req->params), {foo => 'bar'}, 'params are set from custom env';

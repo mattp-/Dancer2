@@ -1,7 +1,7 @@
 use Test::More tests => 26;
 use strict;
 use warnings FATAL => 'all';
-use Dancer::Request;
+use Dancer::Core::Request;
 
 {
     # 1. - get params
@@ -30,7 +30,7 @@ use Dancer::Request;
                                url => 'http://foo.com/?bar=biz',
                               };
 
-        my $req = Dancer::Request->new(env => \%ENV);
+        my $req = Dancer::Core::Request->new(env => \%ENV);
         is $req->path, '/', 'path is set';
         is $req->method, 'GET', 'method is set';
         ok $req->is_get, "request method is GET";
@@ -62,7 +62,7 @@ use Dancer::Request;
                            hash => [2, 4, 6],
                           };
 
-    my $req = Dancer::Request->new(env => $env);
+    my $req = Dancer::Core::Request->new(env => $env);
     is $req->path, '/', 'path is set';
     is $req->method, 'POST', 'method is set';
     ok $req->is_post, 'method is post';
@@ -107,7 +107,7 @@ use Dancer::Request;
                        meth => 'post',
                       };
 
-    my $req = Dancer::Request->new(env => $env);
+    my $req = Dancer::Core::Request->new(env => $env);
     is $req->path, '/', 'path is set';
     is $req->method, 'POST', 'method is set';
 

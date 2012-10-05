@@ -1,5 +1,5 @@
 use Test::More;
-use Dancer::Request;
+use Dancer::Core::Request;
 
 plan tests => 10;
 
@@ -15,7 +15,7 @@ my $env = {
     SERVER_PROTOCOL   => 'HTTP/1.1',
 };
 
-my $req = Dancer::Request->new(env => $env);
+my $req = Dancer::Core::Request->new(env => $env);
 is $req->base, 'http://localhost:5000/foo';
 
 is $req->uri_for('bar', { baz => 'baz' }),

@@ -59,7 +59,7 @@ Test::TCP::test_tcp(
             ajax '/foo' => sub {'bar'};
 
             my $env     = shift;
-            my $request = Dancer::Request->new( env => $env );
+            my $request = Dancer::Core::Request->new( env => $env );
             Dancer->dance($request);
         };
 

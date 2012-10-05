@@ -18,5 +18,5 @@ plan skip_all => "Pod::Coverage $min_pc required for testing POD coverage"
 plan tests => 2;
 
 pod_coverage_ok('Dancer');
-pod_coverage_ok('Dancer::Request');
+pod_coverage_ok('Dancer::Core::Request');
 
